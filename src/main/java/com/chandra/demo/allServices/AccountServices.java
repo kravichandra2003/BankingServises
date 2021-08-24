@@ -68,7 +68,7 @@ public class AccountServices {
 
 		body.put("timestamp", LocalDateTime.now());
 		body.put("message", Status.FAILURE);
-		return new ResponseEntity<Map<String, Object>>(body, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Map<String, Object>>(body, HttpStatus.NOT_MODIFIED);
 	}
 
 }

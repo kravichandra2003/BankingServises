@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.chandra.demo.allEntities.BeneficiaryInfo;
 import com.chandra.demo.allEntities.Beneficiary;
+import com.chandra.demo.allEntities.BeneficiaryInfo;
 import com.chandra.demo.allEntities.User;
 import com.chandra.demo.allEntities.UserLogingInfo;
 import com.chandra.demo.allEnums.Status;
@@ -30,12 +30,17 @@ public class BeneficiaryServices {
 		Map<String, Object> body = new LinkedHashMap<>();
 		User user = userRepository.findByUserNameIgnoreCase(newUser.getUserName());
 		if (user.isLoggedIn()) {
+			//working on it figuring out how to work with mapping of these kind
+			//user.getAccounts().getBeneficiaryAccount().setAccountNumber(newBeneficiaryUsers.getBeneficiaryAccountNumber());
+			//user.getAccounts().getBeneficiaryAccount().setName(newBeneficiaryUsers.getBeneficiaryName());
+			
+			//user.getBeneficiary().setAccountNumber(newBeneficiaryUsers.getBeneficiaryAccountNumber());
+			//user.getBeneficiary().setName(newBeneficiaryUsers.getBeneficiaryName());
+			//user.getBeneficiary().setId(user.getUserid());
 			beneficiaryUsers.setAccountNumber(newBeneficiaryUsers.getBeneficiaryAccountNumber());
 			beneficiaryUsers.setName(newBeneficiaryUsers.getBeneficiaryName());
-			beneficiaryUsers.setId(user.getUserid());
 			beneficiaryRepo.save(beneficiaryUsers);
-			//beneficiaryUsers.
-			//userRepository.save(user.);
+			//userRepository.save(user);
 			body.put("timestamp", LocalDateTime.now());
 			body.put("message", Status.SUCCESS);
 			return new ResponseEntity<Map<String, Object>>(body, HttpStatus.OK);
